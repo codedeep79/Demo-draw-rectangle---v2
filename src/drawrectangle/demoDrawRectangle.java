@@ -101,6 +101,19 @@ public class demoDrawRectangle extends JFrame{
         this.setVisible(true);
     }
     public static void main(String[] args) {
+//       Nguyên lý hoạt động của một ứng dụng đồ họa trong Swing có thể mô tả vắn tắt như sau:
+//
+//       1. Khi user tương tác với giao diện thì với mỗi sự kiện trên GUI (như click mouse, press key,...)
+//sẽ có 1 AWTEvent  object được tạo ra và lưu vào trong 1 cấu trúc dữ liệu kiểu queue
+//
+//       2. Có 1 thread (chính xác hơn là 1 nhóm thread) chạy vòng lặp vô hạn để xử lý lần lượt các 
+//AWTEvent trong queue. Thread này được gọi là Event-Dispatch thread và chỉ kết thúc khi tắt JVM hoặc đóng giao diện 
+//
+//       Nếu đã từng làm việc với JavaScript trên web thì sẽ thấy mô hình event-programming này rất quen thuộc.
+//       Quay trở lại câu hỏi của bạn thì có thể hiểu đơn giản là method invokeLater() cho phép chạy đoạn 
+//code trong hàm run của object Runnable trên Event-Dispatch thread. Điều này sẽ đảm bảo giao diện đồ họa 
+//được hiển thị đầy đủ trước khi bất kì tương tác nào giữa người dùng với GUI được xử lý 
+//(do cách xử lý tuần tự các AWT event bằng vòng lặp vô hạn).
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
